@@ -3,7 +3,8 @@ module.exports = class Gishatich extends jarangox {
 
     eat() {
         var dexin = this.chooseCell(2);
-        var dexinVandak = random(dexin);
+        var index = Math.floor(Math.random()* dexin.length);
+        var dexinVandak = dexin[index];
         if (dexinVandak) {
             var x = dexinVandak[0];
             var y = dexinVandak[1];
@@ -30,7 +31,8 @@ module.exports = class Gishatich extends jarangox {
     }
     move() {
         var datark = this.chooseCell(0);
-        var miVandak = random(datark);
+        var index = Math.floor(Math.random()* datark.length);
+        var miVandak = datark[index];
         if (miVandak) {
             var x = miVandak[0];
             var y = miVandak[1];
@@ -43,7 +45,8 @@ module.exports = class Gishatich extends jarangox {
     }
     mul() {
         var grassCell = this.chooseCell(1);
-        var newCell = random(grassCell);
+        var index = Math.floor(Math.random()* grassCell.length);
+        var newCell = grassCell[index];
         this.energy /= 2;
         if (newCell) {
             var newX = newCell[0];

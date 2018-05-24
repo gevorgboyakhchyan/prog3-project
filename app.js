@@ -6,10 +6,15 @@ var messages = [];
 
 app.use(express.static("public"));
 app.get('/', function (req, res) {
-   res.redirect('public/index.html');
+    res.redirect('public/index.html');
 });
 server.listen(3000);
+var Grass = require("./class.grass.js");
 var GrassEater = require("./class.GrassEater.js");
+var Gishatich = require("./class.gishatich.js");
+var GisXotEater = require("./class.GisXotEater.js");
+var pos = require("./class.pos.js");
+
 grassArr = [];
 grassEaterArr = [];
 GishatichEater = [];
@@ -34,40 +39,40 @@ for (var i = 0; i < 20; i++) {
 
 
 while (utoxQanak > 0) {
-    var x = Math.floor(random(19));
-    var y = Math.floor(random(19));
+    var x = Math.floor(Math.random() * 19);
+    var y = Math.floor(Math.random() * 19);
     if (matrix[y][x] == 0) {
         utoxQanak--;
         matrix[y][x] = 5;
     }
 }
 while (posQanak > 0) {
-    var x = Math.floor(random(19));
-    var y = Math.floor(random(19));
+    var x = Math.floor(Math.random() * 19);
+    var y = Math.floor(Math.random() * 19);
     if (matrix[y][x] == 0) {
         posQanak--;
         matrix[y][x] = 4;
     }
 }
 while (xotQanak > 0) {
-    var x = Math.floor(random(19));
-    var y = Math.floor(random(19));
+    var x = Math.floor(Math.random() * 19);
+    var y = Math.floor(Math.random() * 19);
     if (matrix[y][x] == 0) {
         xotQanak--;
         matrix[y][x] = 1;
     }
 }
 while (xotakerQanak > 0) {
-    var x = Math.floor(random(19));
-    var y = Math.floor(random(19));
+    var x = Math.floor(Math.random() * 19);
+    var y = Math.floor(Math.random() * 19);
     if (matrix[y][x] == 0) {
         xotakerQanak--;
         matrix[y][x] = 2;
     }
 }
 while (gishatichQanak > 0) {
-    var x = Math.floor(random(19));
-    var y = Math.floor(random(19));
+    var x = Math.floor(Math.random() * 19);
+    var y = Math.floor(Math.random() * 19);
     if (matrix[y][x] == 0) {
         gishatichQanak--;
         matrix[y][x] = 3;
@@ -97,8 +102,14 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
-socket.on("send messege", function (data) {
+    num = 0;
+    exanak = "garun";
+io.on('connection', function (socket) {
     setInterval(func, 500);
+    num++;
+    if(num%80 == 0){
+        exanak = "garun";
+    }
     function func() {
         for (var i in grassArr) {
             var obj = grassArr[i];
@@ -119,6 +130,6 @@ socket.on("send messege", function (data) {
         for (var i in posArr) {
             posArr[i].qashel();
         }
-        io.socket.emit('matrix', matrix);
+        io.sockets.emit('matrix', matrix);
     }
 });

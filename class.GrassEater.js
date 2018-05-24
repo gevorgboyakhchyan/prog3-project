@@ -2,7 +2,8 @@ var jarangox = require("./class.js");
 module.exports = class GrassEater extends jarangox {
     move() {
         var datark = this.chooseCell(0);
-        var miVandak = random(datark);
+        var index = Math.floor(Math.random()* datark.length);
+        var miVandak = datark[index];
         if (miVandak) {
             var x = miVandak[0];
             var y = miVandak[1];
@@ -16,7 +17,8 @@ module.exports = class GrassEater extends jarangox {
     }
     eat() {
         var kanach = this.chooseCell(1);
-        var kanachVandak = random(kanach);
+        var index = Math.floor(Math.random()* kanach.length);
+        var kanachVandak = kanach[index];
         if (kanachVandak) {
             var x = kanachVandak[0];
             var y = kanachVandak[1];
@@ -49,7 +51,8 @@ module.exports = class GrassEater extends jarangox {
     }
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var index = Math.floor(Math.random()* emptyCells.length);
+        var newCell = emptyCells[index];
 
         if (newCell) {
             var newX = newCell[0];
