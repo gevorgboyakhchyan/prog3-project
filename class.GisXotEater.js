@@ -1,9 +1,9 @@
 var jarangox = require("./class.js");
 module.exports = class GisXotEater extends jarangox {
-    
+
     move() {
         var datark = this.chooseCell(0);
-        var index = Math.floor(Math.random()* datark.length);
+        var index = Math.floor(Math.random() * datark.length);
         var miVandak = datark[index];
         if (miVandak) {
             var x = miVandak[0];
@@ -17,10 +17,10 @@ module.exports = class GisXotEater extends jarangox {
     }
     eat() {
         var dexin = this.chooseCell(2);
-        var index = Math.floor(Math.random()* dexin.length);
+        var index = Math.floor(Math.random() * dexin.length);
         var dexinVandak = dexin[index];
         var karmir = this.chooseCell(3);
-        var index1 = Math.floor(Math.random()* karmir.length);
+        var index1 = Math.floor(Math.random() * karmir.length);
         var karmirVandak = karmir[index1];
         if (dexinVandak) {
             var x = dexinVandak[0];

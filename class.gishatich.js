@@ -3,26 +3,28 @@ module.exports = class Gishatich extends jarangox {
 
     eat() {
         var dexin = this.chooseCell(2);
-        var index = Math.floor(Math.random()* dexin.length);
+        var index = Math.floor(Math.random() * dexin.length);
         var dexinVandak = dexin[index];
-        if (dexinVandak) {
-            var x = dexinVandak[0];
-            var y = dexinVandak[1];
-            matrix[this.y][this.x] = 0;
-            matrix[y][x] = 3;
-            this.x = x;
-            this.y = y;
-            this.energy += 1;
-            for (var i in grassEaterArr) {
-                var ger = grassEaterArr[i];
-                if (x == ger.x && y == ger.y) {
-                    grassEaterArr.splice(i, 1);
+        if (exanak != "cmer") {
+            if (dexinVandak) {
+                var x = dexinVandak[0];
+                var y = dexinVandak[1];
+                matrix[this.y][this.x] = 0;
+                matrix[y][x] = 3;
+                this.x = x;
+                this.y = y;
+                this.energy += 1;
+                for (var i in grassEaterArr) {
+                    var ger = grassEaterArr[i];
+                    if (x == ger.x && y == ger.y) {
+                        grassEaterArr.splice(i, 1);
+
+                    }
 
                 }
 
+
             }
-
-
         }
         if (this.energy <= 0) { this.die(); }
         else if (this.energy == 12) { this.mul(); }
@@ -31,7 +33,7 @@ module.exports = class Gishatich extends jarangox {
     }
     move() {
         var datark = this.chooseCell(0);
-        var index = Math.floor(Math.random()* datark.length);
+        var index = Math.floor(Math.random() * datark.length);
         var miVandak = datark[index];
         if (miVandak) {
             var x = miVandak[0];
@@ -45,7 +47,7 @@ module.exports = class Gishatich extends jarangox {
     }
     mul() {
         var grassCell = this.chooseCell(1);
-        var index = Math.floor(Math.random()* grassCell.length);
+        var index = Math.floor(Math.random() * grassCell.length);
         var newCell = grassCell[index];
         this.energy /= 2;
         if (newCell) {

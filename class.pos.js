@@ -13,6 +13,7 @@ module.exports = class pos extends jarangox {
                     for (var j in grassEaterArr) {
                         if (newX == grassEaterArr[j].x && newY == grassEaterArr[j].y) {
                             grassEaterArr.splice(j, 1);
+                            posiKeracneriQanak++;
                             matrix[newY][newX] = 0;
                         }
 
@@ -22,6 +23,7 @@ module.exports = class pos extends jarangox {
                     for (var j in GishatichEater) {
                         if (newX == GishatichEater[j].x && newY == GishatichEater[j].y) {
                             GishatichEater.splice(j, 1);
+                            posiKeracneriQanak++;
                             matrix[newY][newX] = 0;
                         }
                     }

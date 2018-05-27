@@ -38,12 +38,22 @@ module.exports = class GrassEater extends jarangox {
 
 
         }
-        if (this.energy >= 13) {
+        var n = 10;
+        if(exanak == "garun")
+        {
+            n = 15;
+        }
+        else if(exanak != "garun")
+        {
+            n = 10;
+        }
+        if (this.energy >= n) {
             this.mul();
             this.energy = 8;
         }
         if (this.energy == 0) {
             this.die();
+            xotakerMerneluQanak++;
         }
         else if (!kanachVandak) {
             this.move();
