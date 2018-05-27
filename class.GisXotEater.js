@@ -36,6 +36,7 @@ module.exports = class GisXotEater extends jarangox {
                     grassEaterArr.splice(i, 1);
                 }
             }
+            gisxoteaterKeracneriQanak++;
         }
         else if (karmirVandak) {
             var x = karmirVandak[0];
@@ -51,6 +52,7 @@ module.exports = class GisXotEater extends jarangox {
                     GishatichEater.splice(i, 1);
                 }
             }
+            gisxoteaterKeracneriQanak++;
         }
         if (this.energy <= 0) {
             this.die();

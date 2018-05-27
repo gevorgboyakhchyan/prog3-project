@@ -2,9 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-posiKeracneriQanak = 0;
-xotakerMerneluQanak = 0;
-xotBazmanaluQanak = 0;
+var fs = require("fs");
 
 app.set('port', process.env.PORT || 3000);
 
@@ -12,7 +10,8 @@ app.use(express.static("public"));
 app.get('/', function (req, res) {
     res.redirect('public/index.html');
 });
-server.listen(app.get('port'));
+server.listen(app.get('port'), function () { });
+
 var Grass = require("./class.grass.js");
 var GrassEater = require("./class.GrassEater.js");
 var Gishatich = require("./class.gishatich.js");
@@ -26,11 +25,16 @@ posArr = [];
 utox = [];
 var utoxQanak = 5;
 var posQanak = 1;
-var xotQanak = 120;
-var xotakerQanak = 110;
+var xotQanak = 150;
+var xotakerQanak = 120;
 var gishatichQanak = 10;
 matrix = [];
-
+posiKeracneriQanak = 0;
+xotakerMerneluQanak = 0;
+xotBazmanaluQanak = 0;
+gishatichneriMerneluQanak = 0;
+gisxoteaterKeracneriQanak = 0;
+gishatichneriBazmanaluQanak = 0;
 for (var i = 0; i < 20; i++) {
     matrix[i] = [];
     for (var j = 0; j < 20; j++) {
@@ -108,26 +112,40 @@ for (var y = 0; y < matrix.length; y++) {
 }
 num = 0;
 exanak = "garun";
-setInterval(func, 500);
-var obj = {"posiKeracneriQanak":[],
-           "xotakerMerneluQanak":[],
-           "xotBazmanaluQanak":[],
+obj = {
+    "posiKeracneriQanak": [],
+    "xotakerMerneluQanak": [],
+    "xotBazmanaluQanak": [],
+    "gishatichneriMerneluQanak": [],
+    "gisxoteaterKeracneriQanak": [],
+    "gishatichneriBazmanaluQanak":[],
 }
+setInterval(func, 500);
+
 
 
 function func() {
     num++;
-    if(num % 2 == 0)
-    {
-        fs.writeFile("posiKeracneriQanak.json", posiKeracneriQanak);
+    var Jsonn = JSON.stringify(obj, null, ' ')
+    if (num % 2 == 0) {
+        fs.writeFile("static.json", Jsonn);
         obj.posiKeracneriQanak.push(posiKeracneriQanak);
         ////////////////////////////////////////////////
-        fs.writeFile("xotakerMerneluQanak.json", xotakerMerneluQanak);
-        obj.posiKeracneriQanak.push(xotakerMerneluQanak);
+        fs.writeFile("static.json", Jsonn);
+        obj.xotakerMerneluQanak.push(xotakerMerneluQanak);
         ////////////////////////////////////////////////
-        fs.writeFile("xotBazmanaluQanak.json", xotBazmanaluQanak);
-        obj.posiKeracneriQanak.push(xotBazmanaluQanak);
-    } 
+        fs.writeFile("static.json", Jsonn);
+        obj.xotBazmanaluQanak.push(xotBazmanaluQanak);
+        ////////////////////////////////////////////////
+        fs.writeFile("static.json", Jsonn);
+        obj.gishatichneriMerneluQanak.push(gishatichneriMerneluQanak);
+        ////////////////////////////////////////////////
+        fs.writeFile("static.json", Jsonn);
+        obj.gisxoteaterKeracneriQanak.push(gisxoteaterKeracneriQanak);
+        ////////////////////////////////////////////////
+        fs.writeFile("static.json", Jsonn);
+        obj.gishatichneriBazmanaluQanak.push(gishatichneriBazmanaluQanak);
+    }
     if (num % 80 == 0) {
         exanak = "garun";
     }
@@ -142,8 +160,8 @@ function func() {
     }
 
     for (var i in grassArr) {
-        var obj = grassArr[i];
-        obj.mul();
+        var obja = grassArr[i];
+        obja.mul();
     }
     for (var i in GishatichEater) {
         var obj1 = GishatichEater[i];
@@ -159,6 +177,7 @@ function func() {
     for (var i in posArr) {
         posArr[i].qashel();
     }
+    io.sockets.emit('exanak',exanak);
     io.sockets.emit('matrix', matrix);
 }
 

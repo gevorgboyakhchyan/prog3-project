@@ -1,5 +1,6 @@
 var jarangox = require("./class.js");
 module.exports = class GrassEater extends jarangox {
+
     move() {
         var datark = this.chooseCell(0);
         var index = Math.floor(Math.random()* datark.length);

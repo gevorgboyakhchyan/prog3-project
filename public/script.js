@@ -1,11 +1,33 @@
 var side = 20;
+guyn = "";
+
 function setup() {
     socket = io.connect('http://localhost:3000');
     createCanvas(20 * side, 20 * side);
     background('#acacac');
-    socket.on("matrix",gcel);
+    socket.on("matrix", gcel);
+    socket.on("exanak",function(exanak){
+    if(exanak == "garun")
+    {
+        guyn = "#cef442";
+    }
+    else if(exanak == "amar")
+    {
+        guyn = "#f45c42";
+    }
+    else if(exanak == "ashun")
+    {
+        guyn = "#41f48f";
+    }
+    else if(exanak == "cmer")
+    {
+        guyn = "#41bef4";
+    }
+});
 }
+
 function gcel(matrix) {
+
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
@@ -21,7 +43,7 @@ function gcel(matrix) {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {
-                fill("#acacac");
+                fill(guyn);
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 4) {

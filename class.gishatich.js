@@ -26,8 +26,8 @@ module.exports = class Gishatich extends jarangox {
 
             }
         }
-        if (this.energy <= 0) { this.die(); }
-        else if (this.energy == 12) { this.mul(); }
+        if (this.energy <= 0) { this.die(); gishatichneriMerneluQanak++;}
+        else if (this.energy == 12) { this.mul(); gishatichneriBazmanaluQanak++;}
         else if (!dexinVandak) { this.move(); }
 
     }
